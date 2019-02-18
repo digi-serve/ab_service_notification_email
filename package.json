@@ -1,0 +1,19 @@
+{
+  "name": "notification_email",
+  "version": "0.0.0",
+  "description": "A service for sending smtp emails.",
+  "main": "app.js",
+  "author": "Johnny Hausman",
+  "license": "MIT",
+  "dependencies": {
+    "ab-utils": "Hiro-Nakamura/ab-utils",
+    "cote": "^0.19.1",
+    "nodemailer": "^5.1.1",
+    "nodemon": "^1.18.10"
+  },
+  "scripts": {
+    "dev": "node_modules/.bin/nodemon --inspect-brk=0.0.0.0:9229 app.js",
+    "devBuild": "rm node_modules/.yarn-integrity && docker run -it --mount type=bind,source=\"$(pwd)\",target=/app -w /app node yarn",
+    "devInstall": "docker run -it --mount type=bind,source=\"$(pwd)\",target=/app -w /app node bash"
+  }
+}
