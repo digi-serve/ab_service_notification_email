@@ -26,9 +26,11 @@ const config = AB.config("notification_email");
 
 const cote = require("cote");
 const emailService = new cote.Responder({ name: "Notification-Email" });
-const send = require(path.join(__dirname, "src", "send.js")).send;
 
 const ABService = AB.service;
+
+const emailHandler = require(path.join(__dirname, "src", "handler.js"));
+emailHandler.init({ config });
 
 //
 // NotificationEmail Service
@@ -42,52 +44,15 @@ class NotificationEmail extends ABService {
   // }
 
   shutdown() {
-    emailService.off("notification.email", handler);
+    emailService.off("notification.email", emailHandler.fn);
     super.shutdown();
   }
 
   run() {
-    emailService.on("notification.email", handler);
+    emailService.on("notification.email", emailHandler.fn);
   }
 }
 
 // Make an instance of our Service (which starts the App)
+/* eslint-disable no-unused-vars */
 var Service = new NotificationEmail({ name: "Notification Email" });
-
-/**
- * handler
- * our email Request handler.
- */
-function handler(req, cb) {
-  // check if we are enabled
-  if (!config.enabled) {
-    // we shouldn't be getting notification.email messages
-    console.log(
-      "WARN: notification.email job received, but config.enabled is false."
-    );
-    var err = new Error("notification.email service is disabled.");
-    err.code = "EDISABLED";
-    cb(err);
-    return;
-  }
-
-  // verify required parameters in job
-  if (!req.email) {
-    var err = new Error(
-      ".email parameter required in notification.email service."
-    );
-    err.code = "EMISSINGPARAM";
-    cb(err);
-    return;
-  }
-
-  req.transport = req.transport || config.default;
-
-  send(req.transport, req.email)
-    .then(() => {
-      cb(null, { status: "success" });
-    })
-    .catch(err => {
-      cb(err, { status: "error", error: err });
-    });
-}
