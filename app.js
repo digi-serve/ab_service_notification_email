@@ -39,20 +39,21 @@ const ABService = AB.service;
 //  .shutdown() : shutdown communications & data
 //  .run()      : perform your unique actions
 class NotificationEmail extends ABService {
-  // startup() {
-  //   super.startup();
-  // }
+    // startup() {
+    //   super.startup();
+    // }
 
-  shutdown() {
-    emailService.off("notification.email", emailHandler.fn);
-    super.shutdown();
-  }
+    shutdown() {
+        emailService.off("notification.email", emailHandler.fn);
+        super.shutdown();
+    }
 
-  run() {
-    emailService.on("notification.email", emailHandler.fn);
-    this.ready();
-  }
+    run() {
+        emailService.on("notification.email", emailHandler.fn);
+        this.ready();
+    }
 }
 
 // Make an instance of our Service (which starts the App)
+/* eslint-disable no-unused-vars */
 var Service = new NotificationEmail({ name: "Notification Email" });
