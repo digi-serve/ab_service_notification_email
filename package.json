@@ -6,10 +6,9 @@
   "author": "Johnny Hausman",
   "license": "MIT",
   "dependencies": {
-    "ab-utils": "Hiro-Nakamura/ab-utils#master",
+    "ab-utils": "github:Hiro-Nakamura/ab-utils#master",
     "cote": "^0.21.1",
-    "nodemailer": "^6.4.2",
-    "nodemon": "^1.18.10"
+    "nodemailer": "^6.4.2"
   },
   "scripts": {
     "dev": "node_modules/.bin/nodemon app.js",
@@ -21,6 +20,11 @@
     "devInstall:darwin:linux": "docker run -it --mount type=bind,source=\"$(pwd)\",target=/app -w /app node bash"
   },
   "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.19.1",
     "run-script-os": "^1.0.7"
   }
 }

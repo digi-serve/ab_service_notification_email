@@ -6,24 +6,13 @@ const async = require("async");
 const fs = require("fs");
 const path = require("path");
 
-const send = require(path.join(__dirname, "send.js")).send;
-
-var config;
+const send = require(path.join(__dirname, "..", "src", "send.js")).send;
 
 module.exports = {
     /**
-     * init
-     * setup our configuration & connections
-     * @param {obj} options
-     *        An object hash of important configuration data:
-     *        .config  {obj} the config settings for this service.
-     *        .DB {DBConnection} an instance of a live DB connection.
-     *        ...
+     * Key: the cote message key we respond to.
      */
-    init: function(options) {
-        options = options || {};
-        config = options.config || null;
-    },
+    key: "notification.email",
 
     /**
      * fn
@@ -35,7 +24,9 @@ module.exports = {
      */
     fn: function handler(req, cb) {
         var err;
-        console.log("email:", req);
+
+        var config = req.config();
+
         // if config not set, we have not be initialized properly.
         if (!config) {
             console.log("WARN: notification.email handler not setup properly.");
@@ -59,7 +50,8 @@ module.exports = {
         }
 
         // verify required parameters in job
-        if (!req.param.email) {
+        var email = req.param("email");
+        if (!email) {
             var err = new Error(
                 ".email parameter required in notification.email service."
             );
@@ -68,16 +60,16 @@ module.exports = {
             return;
         }
 
-        req.param.transport = req.param.transport || config.default;
+        var transport = req.param("transport") || config.default;
 
-        send(req.param.transport, req.param.email)
+        send(transport, email)
             .then(() => {
+                req.log("send success.");
                 cb(null, { status: "success" });
             })
             .catch((err) => {
+                req.log("error sending email:", err);
                 cb(err, { status: "error", error: err });
             });
-
-        // cb(null, { uuid: "123456" });
     }
 };
