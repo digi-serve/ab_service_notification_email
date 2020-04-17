@@ -2,8 +2,8 @@
  * handler
  * our Request handler.
  */
-const async = require("async");
-const fs = require("fs");
+// const async = require("async");
+// const fs = require("fs");
 const path = require("path");
 
 const send = require(path.join(__dirname, "..", "src", "send.js")).send;
@@ -43,7 +43,7 @@ module.exports = {
          console.log(
             "WARN: notification.email job received, but config.enable is false."
          );
-         var err = new Error("notification.email service is disabled.");
+         err = new Error("notification.email service is disabled.");
          err.code = "EDISABLED";
          cb(err);
          return;
@@ -52,7 +52,7 @@ module.exports = {
       // verify required parameters in job
       var email = req.param("email");
       if (!email) {
-         var err = new Error(
+         err = new Error(
             ".email parameter required in notification.email service."
          );
          err.code = "EMISSINGPARAM";
@@ -63,8 +63,8 @@ module.exports = {
       var transport = req.param("transport") || config.default;
 
       send(transport, email)
-         .then(() => {
-            req.log("send success.");
+         .then((/* responseStatus */) => {
+            req.log("send success.", email);
             cb(null, { status: "success" });
          })
          .catch((err) => {
