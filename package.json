@@ -7,8 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "ab-utils": "github:Hiro-Nakamura/ab-utils#master",
-    "cote": "^0.21.1",
-    "nodemailer": "^6.4.2"
+    "cote": "^1.0.0",
+    "nodemailer": "^6.4.11"
   },
   "scripts": {
     "dev": "node_modules/.bin/nodemon app.js",
@@ -20,11 +20,11 @@
     "devInstall:darwin:linux": "docker run -it --mount type=bind,source=\"$(pwd)\",target=/app -w /app node bash"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "nodemon": "^2.0.3",
-    "prettier": "^1.19.1",
-    "run-script-os": "^1.0.7"
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.1",
+    "run-script-os": "^1.1.1"
   }
 }
