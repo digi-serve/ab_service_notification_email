@@ -15,6 +15,28 @@ module.exports = {
    key: "notification_email.email",
 
    /**
+    * inputValidation
+    * define the expected inputs to this service handler:
+    * Format:
+    * "parameterName" : {
+    *    {joi.fn}   : {bool},  // performs: joi.{fn}();
+    *    {joi.fn}   : {
+    *       {joi.fn1} : true,   // performs: joi.{fn}().{fn1}();
+    *       {joi.fn2} : { options } // performs: joi.{fn}().{fn2}({options})
+    *    }
+    *    // examples:
+    *    "required" : {bool},  // default = false
+    *
+    *    // custom:
+    *        "validation" : {fn} a function(value, {allValues hash}) that
+    *                       returns { error:{null || {new Error("Error Message")} }, value: {normalize(value)}}
+    * }
+    */
+   inputValidation: {
+      email: { required: true },
+   },
+
+   /**
     * fn
     * our Request handler.
     * @param {obj} req
@@ -27,38 +49,7 @@ module.exports = {
 
       var config = req.config();
 
-      // if config not set, we have not be initialized properly.
-      if (!config) {
-         console.log("WARN: notification.email handler not setup properly.");
-         err = new Error("notification.email: Missing config");
-         err.code = "EMISSINGCONFIG";
-         err.req = req;
-         cb(err);
-         return;
-      }
-
-      // check if we are enabled
-      if (!config.enable) {
-         // we shouldn't be getting notification.email messages
-         console.log(
-            "WARN: notification.email job received, but config.enable is false."
-         );
-         err = new Error("notification.email service is disabled.");
-         err.code = "EDISABLED";
-         cb(err);
-         return;
-      }
-
-      // verify required parameters in job
       var email = req.param("email");
-      if (!email) {
-         err = new Error(
-            ".email parameter required in notification.email service."
-         );
-         err.code = "EMISSINGPARAM";
-         cb(err);
-         return;
-      }
 
       var transport = req.param("transport") || config.default;
 
@@ -71,5 +62,5 @@ module.exports = {
             req.log("error sending email:", err);
             cb(err, { status: "error", error: err });
          });
-   }
+   },
 };
