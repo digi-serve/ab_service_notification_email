@@ -33,7 +33,8 @@ module.exports = {
     * }
     */
    inputValidation: {
-      email: { required: true },
+      email: { object: true, required: true },
+      transport: { string: true, optional: true },
    },
 
    /**
@@ -46,6 +47,8 @@ module.exports = {
     */
    fn: function handler(req, cb) {
       var err;
+
+      req.log("NotificationEmail.email: request received.");
 
       var config = req.config();
 
@@ -60,6 +63,7 @@ module.exports = {
          })
          .catch((err) => {
             req.log("error sending email:", err);
+            err.transport = config[transport];
             cb(err, { status: "error", error: err });
          });
    },
