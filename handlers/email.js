@@ -62,7 +62,12 @@ module.exports = {
             cb(null, { status: "success" });
          })
          .catch((err) => {
-            req.log("error sending email:", err);
+            // req.log("error sending email:", err);
+            req.notify.developer(err, {
+               context: "error sending email",
+               email,
+               config,
+            });
             err.transport = config[transport];
             cb(err, { status: "error", error: err });
          });
