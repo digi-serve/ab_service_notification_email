@@ -1,17 +1,17 @@
 ##
-## digiserve/ab-notification-email:develop
+## digiserve/ab-notification-email:master
 ##
 ## This is our microservice for managing sending/receiving of emails.
 ##
 ## Docker Commands:
 ## ---------------
-## $ docker build -t digiserve/ab-notification-email:develop .
-## $ docker push digiserve/ab-notification-email:develop
+## $ docker build -t digiserve/ab-notification-email:master .
+## $ docker push digiserve/ab-notification-email:master
 ##
 
-FROM digiserve/service-cli:develop
+FROM digiserve/service-cli:master
 
-RUN git clone --recursive https://github.com/appdevdesigns/ab_service_notification_email.git app && cd app && git checkout develop && npm install
+RUN git clone --recursive https://github.com/appdevdesigns/ab_service_notification_email.git app && cd app && npm install
 
 WORKDIR /app
 
