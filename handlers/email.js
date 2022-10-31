@@ -53,6 +53,15 @@ module.exports = {
       var config = req.config();
 
       var email = req.param("email");
+      // email.from : {string} the email address of the sender
+      // email.to :
+      // email.cc :
+      // email.bcc:  {string} comma separated list of recipient email addresses
+      //              or {array} recipient email addresses
+      // email.subject: {string} the subject of the email
+      // email.text : {string} plaintext version of the message
+      // email.html : {string} HTML version of the message
+      // email.attachments: {array} attachment objects
 
       var transport = req.param("transport") || config.default;
 
