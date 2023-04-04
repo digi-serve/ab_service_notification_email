@@ -1,7 +1,7 @@
 //
 // send
 // Send the email via nodemailer
-const AB = require("ab-utils");
+const AB = require("@digiserve/ab-utils");
 
 const config = AB.config("notification_email");
 const nodeMailer = require("nodemailer");
