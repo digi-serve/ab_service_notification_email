@@ -17,7 +17,7 @@ module.exports = {
     *        The email definition to send.
     * @return {Promise}
     */
-   send: function(transportKey, email) {
+   send: function (transportKey, email) {
       // format 1:  send('smtp', { to:'', from:'', ... });
       // format 2:  send({to:'', from:'', ... });
       return new Promise((resolve, reject) => {
@@ -45,7 +45,7 @@ module.exports = {
          var transport = transports[transportKey];
 
          // send the mail using the requested transport
-         transport.sendMail(email, function(err, responseStatus) {
+         transport.sendMail(email, function (err, responseStatus) {
             if (err) {
                console.log("send():err:", err);
                if (responseStatus) {
@@ -58,5 +58,5 @@ module.exports = {
             }
          });
       });
-   }
+   },
 };
