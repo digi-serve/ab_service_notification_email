@@ -8,7 +8,7 @@
   "dependencies": {
     "@digiserve/ab-utils": "^1.8.2",
     "cote": "^1.0.0",
-    "nodemailer": "^6.9.1",
+    "nodemailer": "^6.9.9",
     "semver": "^7.6.0"
   },
   "scripts": {
