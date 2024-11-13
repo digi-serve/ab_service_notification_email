@@ -1,6 +1,6 @@
 {
   "name": "notification_email",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A service for sending smtp emails.",
   "main": "app.js",
   "author": "Johnny Hausman",
