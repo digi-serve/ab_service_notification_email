@@ -6,7 +6,7 @@
   "author": "Johnny Hausman",
   "license": "MIT",
   "dependencies": {
-    "@digiserve/ab-utils": "^1.8.2",
+    "@digiserve/ab-utils": "^1.8.3",
     "cote": "^1.0.0",
     "nodemailer": "^6.9.1",
     "semver": "^7.6.3"
