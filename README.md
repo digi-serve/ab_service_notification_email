@@ -1,6 +1,6 @@
-[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/digi-serve/ab_service_notification_email/pr-merge-release.yml?logo=github&label=Build%20%26%20Test)](https://github.com/digi-serve/ab_service_notification_email/actions/workflows/pr-merge-release.yml)
-[![GitHub tag (with filter)](https://img.shields.io/github/v/tag/digi-serve/ab_service_notification_email?logo=github&label=Latest%20Version)
-](https://github.com/digi-serve/ab_service_notification_email/releases)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/CruGlobal/ab_service_notification_email/pr-merge-release.yml?logo=github&label=Build%20%26%20Test)](https://github.com/CruGlobal/ab_service_notification_email/actions/workflows/pr-merge-release.yml)
+[![GitHub tag (with filter)](https://img.shields.io/github/v/tag/CruGlobal/ab_service_notification_email?logo=github&label=Latest%20Version)
+](https://github.com/CruGlobal/ab_service_notification_email/releases)
 [![Docker Pulls](https://img.shields.io/docker/pulls/digiserve/ab-notification-email?logo=docker&logoColor=white&label=Docker%20Pulls)](https://hub.docker.com/r/digiserve/ab-notification-email)
 [![Image Size](https://img.shields.io/docker/image-size/digiserve/ab-notification-email/master?logo=docker&logoColor=white&label=Image%20Size)](https://hub.docker.com/r/digiserve/ab-notification-email/tags)
 
@@ -8,7 +8,7 @@
 An AppBuilder service to send notifications via SMTP.
 
 ## Install
-See [ab_cli](https://github.com/digi-serve/ab-cli)
+See [ab_cli](https://github.com/CruGlobal/ab-cli)
 
 ## Pull Requests
 Pull Requests should be tagged with a label `major`, `minor` or `patch`. Use `major` for breaking changes, `minor` for new features, or `patch` for bug fixes. To merge without creating a release a `no_release` tag can be added instead.
